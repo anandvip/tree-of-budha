@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Meditation Progress Tracker</title>
+  <style>
+   .tracker-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 20px;
+   position:relative
+   }
+   .day {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+   .session {
+     width: 20px;
+     height: 20px;
+     background-color: aqua;
+     margin: 2px;
+     transition: background-color 0.3s;
+     position: relative;
+     border-radius:5px
+   }
+   .completed {
+     background-color: orange;
+   }
+   .vertical-line {
+     width: 0.5pt;
+     height: 40px;
+     background-color: black;
+     position: relative;
+   }
+   .count {
+     font-size: 12px;
+     margin-right: 5px;
+   }
+   .timestamp {
+     position: absolute;
+     top: -18px;
+     left: 50%;
+     transform: translateX(-5%);
+     font-size: 10px;
+     color: gray;
+     opacity: 0;
+     transition: opacity 0.3s;
+   }
+   .session.completed .timestamp {
+     opacity: 1;
+   }
+
+/* .timestamp{
+  width:200px;
+  position:absolute;
+  top:0.39rem;
+  left:-3rem;
+  opacity 0.3s
+  left:0px;
+  text-wrap: nowrap;
+} */
+
+
+.timestampL {
+  position: absolute;
+  top: -18px;
+  left: -110px; /* Adjust value as needed */
+  font-size: 10px;
+  color: gray;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 200px;
+  white-space: nowrap;
+}
+
+.timestampR {
+  position: absolute;
+  top: -18px;
+  right: 80%; /* Adjust value as needed */
+  font-size: 10px;
+  color: gray;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 200px;
+  white-space: nowrap;
+}
+
+timestampL {
+    position: absolute;
+    top: -18px;
+    left: -155px;
+    font-size: 10px;
+    color: gray;
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 200px;
+    white-space: nowrap;
+}
+  </style>
+</head>
+  
+<body>
+ <div class="tracker-container" id="tracker-container">
+   <!-- Placeholder for progress scale -->
+ </div>
+ <script>
+   const totalDays = 48;
+   for (let i = 0; i < totalDays; i++) {
+     const dayDiv = document.createElement('div');
+     dayDiv.classList.add('day');
+
+     const morningSessionDiv = document.createElement('div');
+     morningSessionDiv.classList.add('session');
+     const morningSessionCount = document.createElement('span');
+     morningSessionCount.classList.add('count');
+     morningSessionCount.textContent = `${i * 2 + 1}`;
+     const morningSessionTimestamp = document.createElement('span');
+     morningSessionTimestamp.classList.add('timestamp', 'timestampL');
+     morningSessionDiv.appendChild(morningSessionCount);
+     morningSessionDiv.appendChild(morningSessionTimestamp);
+     morningSessionDiv.addEventListener('click', function() {
+       this.classList.toggle('completed');
+       if (this.classList.contains('completed')) {
+         const now = new Date();
+         const options = { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+         this.children[1].textContent = now.toLocaleString('en-US', options);
+       } else {
+         this.children[1].textContent = '';
+       }
+     });
+
+     const eveningSessionDiv = document.createElement('div');
+     eveningSessionDiv.classList.add('session');
+     const eveningSessionCount = document.createElement('span');
+     eveningSessionCount.classList.add('count');
+     eveningSessionCount.textContent = `${i * 2 + 2}`;
+     const eveningSessionTimestamp = document.createElement('span');
+     eveningSessionTimestamp.classList.add('timestamp', 'timestampR');
+     eveningSessionDiv.appendChild(eveningSessionCount);
+     eveningSessionDiv.appendChild(eveningSessionTimestamp);
+     eveningSessionDiv.addEventListener('click', function() {
+       this.classList.toggle('completed');
+       if (this.classList.contains('completed')) {
+         const now = new Date();
+         const options = { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+         this.children[1].textContent = now.toLocaleString('en-US', options);
+       } else {
+         this.children[1].textContent = '';
+       }
+     });
+
+     const verticalLine = document.createElement('div');
+     verticalLine.classList.add('vertical-line');
+
+     dayDiv.appendChild(morningSessionDiv);
+     dayDiv.appendChild(verticalLine);
+     dayDiv.appendChild(eveningSessionDiv);
+     document.getElementById('tracker-container').appendChild(dayDiv);
+   }
+ </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Meditation Progress Tracker</title>
+</head>
+<body>
+ <div class="tracker-container" id="tracker-container">
+   <!-- Placeholder for progress scale -->
+ </div>
+ <script>
+   const totalDays = 48;
+   for (let i = 0; i < totalDays; i++) {
+     const dayDiv = document.createElement('div');
+     dayDiv.classList.add('day');
+
+     const morningSessionDiv = document.createElement('div');
+     morningSessionDiv.classList.add('session');
+     const morningSessionCount = document.createElement('span');
+     morningSessionCount.classList.add('count');
+     morningSessionCount.textContent = `${i * 2 + 1}`;
+     const morningSessionTimestamp = document.createElement('span');
+     morningSessionTimestamp.classList.add('timestamp', 'timestampL');
+     morningSessionDiv.appendChild(morningSessionCount);
+     morningSessionDiv.appendChild(morningSessionTimestamp);
+     morningSessionDiv.addEventListener('click', function() {
+       this.classList.toggle('completed');
+       if (this.classList.contains('completed')) {
+         const now = new Date();
+         const options = { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+         this.children[1].textContent = now.toLocaleString('en-US', options);
+       } else {
+         this.children[1].textContent = '';
+       }
+     });
+
+     const eveningSessionDiv = document.createElement('div');
+     eveningSessionDiv.classList.add('session');
+     const eveningSessionCount = document.createElement('span');
+     eveningSessionCount.classList.add('count');
+     eveningSessionCount.textContent = `${i * 2 + 2}`;
+     const eveningSessionTimestamp = document.createElement('span');
+     eveningSessionTimestamp.classList.add('timestamp', 'timestampR');
+     eveningSessionDiv.appendChild(eveningSessionCount);
+     eveningSessionDiv.appendChild(eveningSessionTimestamp);
+     eveningSessionDiv.addEventListener('click', function() {
+       this.classList.toggle('completed');
+       if (this.classList.contains('completed')) {
+         const now = new Date();
+         const options = { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+         this.children[1].textContent = now.toLocaleString('en-US', options);
+       } else {
+         this.children[1].textContent = '';
+       }
+     });
+
+     const verticalLine = document.createElement('div');
+     verticalLine.classList.add('vertical-line');
+
+     dayDiv.appendChild(morningSessionDiv);
+     dayDiv.appendChild(verticalLine);
+     dayDiv.appendChild(eveningSessionDiv);
+     document.getElementById('tracker-container').appendChild(dayDiv);
+   }
+ </script>
+  <script>
+  const morningSessionTimestamp = document.createElement('span');
+morningSessionTimestamp.classList.add('timestamp', 'timestampL');
+// ... (rest of the morning session code)
+
+const eveningSessionTimestamp = document.createElement('span');
+eveningSessionTimestamp.classList.add('timestamp', 'timestampR');
+// ... (rest of the evening session code)
+  </script>
+</body>
+</html>
